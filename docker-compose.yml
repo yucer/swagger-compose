@@ -1,0 +1,13 @@
+swagger-editor-l:
+  build: ./swagger-editor
+  container_name: swagger-editor
+  ports:
+    - 127.0.0.1:8080:8080/tcp
+swagger-generator:
+  image: local/swagger-generator
+  #image: swaggerapi/swagger-generator
+  container_name: swagger-generator
+  environment:
+    - GENERATOR_HOST=http://generator.swagger.local:8081
+  ports:
+    - 127.0.0.1:8081:8080/tcp
