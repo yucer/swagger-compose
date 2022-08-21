@@ -15,7 +15,7 @@ The online editor allows the manual modifications of the specs and also makes di
 
 ## Customizing config
 
-But sometimes you want to use another version of the generator or change the its config file. Although some of those options are available in the user interface
+But sometimes you want to use another version of the generator or change its config file. Although some of those options are available in the user interface
 of the editor, you can make it persistent modifying the values inside the folder `swagger-editor\config` of this project.
 
 ## Use another version of the generator
