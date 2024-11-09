@@ -13,61 +13,45 @@ So far it allows to run two swagger services in *localhost*:
 
 The online editor allows the manual modifications of the specs and also makes direct requests to the online generator.
 
-## Customizing config
+## Local generation
 
-But sometimes you want to use another version of the generator or change its config file. Although some of those options are available in the user interface
-of the editor, you can make it persistent modifying the values inside the folder `swagger-editor\config` of this project.
-
-## Use another version of the generator
-
-1. Clone the [swagger-codegen](https://github.com/swagger-api/swagger-codegen) tool
-
-  ```bash
-  $ git clone https://github.com/swagger-api/swagger-codegen
-  $ cd swagger-codegen
-  ```
-
-2. Build the generator:
-
-  ```bash
-  $ ./run-in-docker.sh mvn clean
-  $ ./run-in-docker.sh mvn package
-  ```
-
-3. Build the online-generator:
-
-  ```bash
-  $ cd modules/swagger-generator
-  $ docker build -t local/swagger-generator .
-  ```
-
-  Here you can use your own dockerhub namespace instead of `local`
-
-4. Go to the folder of this project and edit the `docker-compose.yml` file to use:
-
-  ```yaml
-  image: local/swagger-generator
-  ```
-
-  instead of:
-
-  ```yaml
-  image: swaggerapi/swagger-generator
-  ```
+But if the generation must be local, because of privacy restrictions you can...
 
 ## Run services
 
   You can run the services this way:
 
     ```bash
-    $ cd docker-compose
-    $ docker-compose up
+    docker-compose up
     ```
 
   in case of some modification to the config files you might need:
 
     ```bash
-    $ docker-compose down
-    $ docker-compose build --no-cache
-    $ docker-compose up
+    docker-compose down
+    docker-compose build
+    docker-compose up
     ```
+
+## If you want to locally build the code generator image
+
+1. Clone the [swagger-codegen](https://github.com/swagger-api/swagger-codegen) tool
+
+  ```bash
+  git clone https://github.com/swagger-api/swagger-codegen
+  cd swagger-codegen
+  ```
+
+2. Build the generator:
+
+  ```bash
+  ./run-in-docker.sh mvn clean
+  ./run-in-docker.sh mvn package
+  ```
+
+3. Build the online-generator:
+
+  ```bash
+  cd modules/swagger-generator
+  docker build -t swaggerapi/swagger-generator .
+  ```
